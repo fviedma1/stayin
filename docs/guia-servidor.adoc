@@ -1,0 +1,224 @@
+== Servidor AWS 
+
+Un cop iniciat el Start Lab i estem connectats a la nostra instància de AWS, farem el següent:
+
+Primer començarem amb l'actualització del sistema:
+
+[source,bash]
+----
+sudo apt-get update
+sudo apt-get upgrade
+----
+
+Quan els paquets estiguin actualitzats, començarem amb la instal·lació de Nginx:
+
+[source,bash]
+----
+sudo apt-get install nginx
+----
+
+Un cop instal·lat Nginx, farem la instal·lació de MySQL:
+
+[source,bash]
+----
+sudo apt-get install default-mysql-server
+----
+
+Per últim, instal·larem el llenguatge de programació PHP:
+
+[source,bash]
+----
+sudo apt-get install -y php8.2-curl php8.2-mbstring php8.2-xml php8.2-fpm php8.2-mysql
+----
+
+Ara instal·larem GIT per poder clonar el nostre projecte:
+
+[source,bash]
+----
+sudo apt-get install git
+----
+
+Un cop instal·lat GIT, clonarem el nostre projecte. Primer ens situarem a la carpeta on volem clonar el projecte:
+
+[source,bash]
+----
+cd /var/www/html
+git clone https://gitlab.com/fernando-viedma/grup07-hotels.git
+----
+
+Ara donarem permisos a la carpeta del nostre projecte:
+
+[source,bash]
+----
+sudo chown -R www-data:www-data /var/www/html/grup07-hotels
+sudo chmod -R 755 /var/www/html/grup07-hotels
+----
+
+Ja podrem accedir a la nostra base de dades:
+
+[source,bash]
+----
+sudo mysql -u root -p
+----
+
+I crearem un usuari per la nostra base de dades:
+
+[source,bash]
+----
+CREATE USER 'C@pernic'@'localhost' IDENTIFIED BY 'C@pernic2324'
+----
+
+I li donarem permisos:
+
+[source,bash]
+----
+GRANT ALL PRIVILEGES ON *.* TO 'C@pernic'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES
+----
+
+Ara farem la instal·lació de Composer.
+
+En primer lloc, descarreguem Composer:
+
+[source,bash]
+----
+sudo php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+----
+
+I l'instal·lem:
+
+[source,bash]
+----
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+----
+
+Ara configurarem el servidor web Nginx per a que apunti a la nostra aplicació:
+
+[source,bash]
+----
+sudo rm /etc/nginx/sites-enabled/default
+----
+
+Crearem un arxiu de configuració per a la nostra aplicació:
+
+[source,bash]
+----
+sudo nano /etc/nginx/sites-available/laravel.conf
+----
+
+I hi afegirem el següent contingut:
+
+[source,bash]
+----
+server {
+  listen 80;
+  root /var/www/html/recuperacio-fvm-hotels/src/public;
+  server_name 54.161.94.235 nando-bko.stayin7.info;
+  index index.html index.htm index.php;
+  charset utf-8;
+
+  location / {
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location = /robots.txt { access_log off; log_not_found off; }
+  access_log off;
+  error_log /var/log/nginx/pterodactyl.app-error.log error;
+  client_max_body_size 100m;
+  client_body_timeout 120s;
+  sendfile off;
+  location ~ \.php$ {
+  fastcgi_split_path_info ^(.+\.php)(/.+)$;
+  fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+  fastcgi_index index.php;
+  include fastcgi_params;
+  fastcgi_param PHP_VALUE "upload_max_filesize = 100M \n post_max_size=100M";
+  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  fastcgi_param HTTP_PROXY "";
+  fastcgi_intercept_errors off;
+  fastcgi_buffer_size 16k;
+  fastcgi_buffers 4 16k;
+  fastcgi_connect_timeout 300;
+  fastcgi_send_timeout 300;
+  fastcgi_read_timeout 300;
+  }
+
+  location ~ /\.ht {
+    deny all;
+  }
+}
+
+
+----
+
+Crearem un enllaç simbòlic per a la nostra aplicació:
+
+[source,bash]
+----
+sudo ln -s /etc/nginx/sites-available/laravel.conf /etc/nginx/sites-enabled/laravel.conf
+----
+
+I reiniciarem Nginx:
+
+[source,bash]
+----
+sudo systemctl restart nginx
+----
+
+Ara anirem al directori del nostre projecte i instal·larem Composer:
+
+[source,bash]
+----
+cd /var/www/html/grup07-hotels
+sudo composer install
+----
+
+Seguidament, copiem el fitxer .env.example i el renombrem a .env:
+
+[source,bash]
+----
+sudo cp .env.example .env
+----
+
+Generem les claus per a la nostra aplicació:
+
+[source,bash]
+----
+sudo php artisan key:generate
+sudo php artisan config:cache
+sudo php artisan route:cache
+sudo php artisan view:cache
+sudo php artisan event:cache
+sudo php artisan optimize
+----
+
+Abans de fer les migracions de la base de dades, caldrà configurar la base de dades. Per fer-ho, editarem el fitxer .env:
+
+[source,bash]
+----
+sudo nano .env
+----
+
+I ho configurarem de la següent manera:
+
+[source,bash]
+----
+APP_DEBUG=false
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=hotel
+DB_USERNAME=C@pernic
+DB_PASSWORD=C@pernic2324
+----
+
+I per últim, farem les migracions de la base de dades:
+
+[source,bash]
+----
+sudo php artisan migrate
+----
+
+-link:memoria.adoc[Torna a la Memòria]

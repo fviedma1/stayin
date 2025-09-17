@@ -1,0 +1,40 @@
+[plantuml, er-diagram, png]
+----
+entity user {
+  *id_user : int
+  role : ENUM("admin", "viewer", "secretary")
+  name : VARCHAR(50)
+  mail : VARCHAR(50)
+}
+
+entity hotel {
+  *id_hotel : int
+  name : VARCHAR(50)
+  address : VARCHAR(50)
+  city : VARCHAR(50)
+  country : VARCHAR(50)
+  telephone : VARCHAR(15)
+}
+
+entity type_room {
+  *id_type : int
+  room_name : VARCHAR(50)
+  service : int
+  bed : int
+}
+
+entity room {
+  *id_room : int
+  type_id : int
+  variant : int
+  price : double
+  hotel_id : int
+  user_id : int
+  
+}
+
+user ||--o{ room : "has"
+hotel ||--o{ hotel_room : "has"
+type_room ||--o{ room : "has"
+room ||--o{ hotel_room : "has"
+----

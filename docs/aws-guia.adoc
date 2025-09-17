@@ -1,0 +1,31 @@
+== Guia AWS 
+
+En aquesta guia explicarem pas per pas com s'ha de crear una instància a AWS.
+
+.Primer de tot, caldrà tenir un compte a AWS.
+.Un cop creat l'usuari, caldrà anar a la consola de AWS i li donarem a "Start Lab".
+.Un cop fet això, li donarem a "AWS" que ho podem trobar a la part superior esquerra.
+.Un cop dins, li donarem a "EC2" que ho podem trobar a la part superior esquerra.
+.Seguidament, li donarem a "Lanzar Instàncias".
+
+Aqui començarem a configurar la instància:
+
+1. **Posar un nom a la instància**:
+   - Exemple: `NomInstancia`
+
+2. **Seleccionar la imatge**:
+   - Anar a l'apartat de "Imatges" i seleccionar "Seleccionar Imatge".
+   - Escollir la imatge de `Debian`.
+
+3. **Seleccionar el tipus de instància**:
+   - Escollir la instància de `t2.micro`.
+
+4. **Configurar el par de claus**:
+   - Escollir l'opció de `Vockey`.
+
+5. **Configurar les xarxes**:
+   - Marcar totes les opcions que hi han.
+
+Un cop fet això, ja podrem crear la instància.
+
+-link:memoria.adoc[Torna a la Memòria]

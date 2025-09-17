@@ -1,0 +1,312 @@
+= Escenaris d'Autenticació i Proves de Laravel
+:toc: left
+
+== Escenaris de Proves del Auth
+
+=== 1. Redirecció d'Usuari No Autenticat a la Pàgina de Login
+Nom de la Prova: test_non_authenticated_user_redirect_to_login
+
+Descripció:
+Verifica que un usuari que intenta accedir a una ruta protegida sense estar autenticat sigui redirigit automàticament a la pàgina de login.
+
+.Passos:
+[source,php]
+----
+public function test_non_authenticated_user_redirect_to_login()
+{
+    $response = $this->get('/');<1>
+    $response->assertStatus(302);<2>
+    $response->assertRedirect(route('login'));<3>
+}
+----
+
+<1> Fer una petició GET a la ruta '/'.
+
+<2> Comprovar que el codi de resposta és 302 
+
+<3> Comprovar que la redirecció apunta a la ruta 'login'.
+
+Resultat Esperat:
+
+L'usuari és redirigit a la pàgina de login.
+
+=== 2. Fallada de Login amb Credencials Incorrectes
+Nom de la Prova: test_user_cannot_login_with_incorrect_credentials
+
+Descripció:  
+Verifica que un usuari no pugui iniciar sessió si introdueix credencials incorrectes.
+
+.Passos:
+[source,php]
+----
+public function test_user_cannot_login_with_incorrect_credentials()
+{
+    $response = $this->post('/login', [
+        'name' => 'admin',<1>
+        'password' => 'incorrectpassword',<2>
+    ]);
+
+    $response->assertRedirect(route('login'));<3>
+    $response->assertSessionHasErrors(['name', 'password']);<4>
+    $this->assertGuest();<5>
+}
+----
+
+<1> Fer una petició POST amb el nom d'usuari 'admin'.  
+<2> Utilitzar la contrasenya incorrecta 'incorrectpassword'.  
+<3> Comprovar que la resposta redirigeix a la pàgina de login.  
+<4> Verificar que es mostren errors de validació per a 'name' i 'password'.  
+<5> Assegurar que l'usuari no està autenticat.  
+
+**Resultat Esperat**:  
+L'usuari no pot iniciar sessió i es mostren errors de validació adequats.
+
+---
+
+=== 3. Inici de Sessió d'Administrador
+Nom de la Prova: test_admin_can_login_with_correct_credentials_expect_redirect
+
+Descripció:  
+Valida que un administrador pugui iniciar sessió amb credencials correctes i sigui redirigit a la pàgina principal de gestió d'hotels.
+
+.Passos:
+[source,php]
+----
+public function test_admin_can_login_with_correct_credentials_expect_redirect()
+{
+    $this->admin();<1>
+
+    $response = $this->post('/login', [
+        'name' => 'admin',<2>
+        'password' => 'admin',<3>
+    ]);
+
+    $response->assertRedirectToRoute('hotel.index');<4>
+}
+----
+
+<1> Crear un administrador amb credencials vàlides mitjançant un mètode auxiliar.  
+<2> Fer una petició POST amb el nom d'usuari 'admin'.  
+<3> Utilitzar la contrasenya correcta 'admin'.  
+<4> Comprovar que l'usuari és redirigit a la vista principal de gestió d'hotels ('hotel.index').  
+
+**Resultat Esperat**:  
+L'usuari administrador és redirigit a la vista principal de gestió d'hotels.
+
+---
+
+=== 4. Inici de Sessió de Recepcionista
+Nom de la Prova: test_recepcionist_can_login_with_correct_credentials_expect_redirect
+
+Descripció:  
+Valida que un recepcionista pugui iniciar sessió amb credencials correctes i sigui redirigit a la vista de gestió del seu hotel.
+
+.Passos:
+[source,php]
+----
+public function test_recepcionist_can_login_with_correct_credentials_expect_redirect()
+{
+    $hotel = Hotel::factory()->create([<1>
+        'receptionist_id' => $this->receptionist()->id,
+    ]);
+
+    $response = $this->post('/login', [
+        'name' => 'recepcio1',<2>
+        'password' => '1234',<3>
+    ]);
+
+    $response->assertRedirect(route('recepcionist.gestor', ['hotelId' => $hotel->id]));<4>
+}
+----
+
+<1> Crear un hotel i associar-lo amb un recepcionista mitjançant un mètode auxiliar.  
+<2> Fer una petició POST amb el nom d'usuari 'recepcio1'.  
+<3> Utilitzar la contrasenya correcta '1234'.  
+<4> Verificar que l'usuari és redirigit a la vista de gestió de l'hotel ('recepcionist.gestor').  
+
+== Escenaris de Proves de Hotels
+
+=== 1. Accés d'Administrador a la Llista de Hotels
+Nom de la Prova: test_admin_can_access_hotel_index
+
+Descripció:  
+Verifica que un administrador pugui accedir correctament a la pàgina principal que mostra la llista de hotels.
+
+.Passos:
+[source,php]
+----
+public function test_admin_can_access_hotel_index(): void
+{
+    $response = $this->actingAs($this->admin())->get('/hotel');<1>
+    $response->assertOk();<2>
+    $response->assertViewIs('hotel.index');<3>
+}
+----
+
+<1> Simular que l'usuari administrador accedeix a la ruta '/hotel'.  
+<2> Comprovar que la resposta té un estat HTTP 200.  
+<3> Verificar que la vista retornada és 'hotel.index'.  
+
+**Resultat Esperat**:  
+L'administrador pot veure correctament la llista de hotels.
+
+---
+
+=== 2. Accés d'Administrador a Crear Hotel
+Nom de la Prova: test_admin_can_access_hotel_create
+
+Descripció:  
+Verifica que un administrador pugui accedir a la pàgina per crear un nou hotel.
+
+.Passos:
+[source,php]
+----
+public function test_admin_can_access_hotel_create(): void
+{
+    $response = $this->actingAs($this->admin())->get('/hotel/create');<1>
+    $response->assertOk();<2>
+    $response->assertViewIs('hotel.create');<3>
+}
+----
+
+<1> Simular que l'usuari administrador accedeix a la ruta '/hotel/create'.  
+<2> Comprovar que la resposta té un estat HTTP 200.  
+<3> Verificar que la vista retornada és 'hotel.create'.  
+
+**Resultat Esperat**:  
+L'administrador pot accedir a la pàgina per crear un nou hotel.
+
+---
+
+=== 3. Visualització de la Llista de Hotels
+Nom de la Prova: test_when_navigate_to_show_hotel_expect_show_hotel_list
+
+Descripció:  
+Valida que la ruta '/hotel/show' mostri correctament la llista de hotels.
+
+.Passos:
+[source,php]
+----
+public function test_when_navigate_to_show_hotel_expect_show_hotel_list(): void
+{
+    $response = $this->actingAs($this->admin())->get('/hotel/show');<1>
+    $response->assertOk();<2>
+    $response->assertViewIs('hotel.show');<3>
+}
+----
+
+<1> Simular que l'usuari administrador accedeix a la ruta '/hotel/show'.  
+<2> Comprovar que la resposta té un estat HTTP 200.  
+<3> Verificar que la vista retornada és 'hotel.show'.  
+
+**Resultat Esperat**:  
+La vista mostra correctament la llista de hotels.
+
+---
+
+=== 4. Crear un Nou Hotel amb Dades Vàlides
+Nom de la Prova: test_when_adding_valid_new_hotel_expect_store_hotel_in_database
+
+Descripció:  
+Comprova que un hotel amb dades vàlides es pot crear correctament i emmagatzemar a la base de dades.
+
+.Passos:
+[source,php]
+----
+public function test_when_adding_valid_new_hotel_expect_store_hotel_in_database(): void
+{
+    Role::firstOrCreate(['name' => 'secretary']);<1>
+    
+    $data = [
+        'name' => 'Hotel Test',
+        'address' => '123 Test Street',
+        'city' => 'Test',
+        'country' => 'Test Country',
+        'telephone' => '123456789',
+        'email' => 'test@example.com',
+        'num_rooms' => 10,
+        'num_users' => 5,
+        'num_reserves' => 20,
+    ];<2>
+
+    $response = $this->actingAs($this->admin())->post('/hotels', $data);<3>
+    $response->assertRedirect(route('hotel.index'));<4>
+}
+----
+
+<1> Crear el rol 'secretary' si no existeix.  
+<2> Definir dades vàlides per al nou hotel.  
+<3> Fer una petició POST a la ruta '/hotels' amb les dades.  
+<4> Verificar que l'usuari és redirigit a la pàgina principal ('hotel.index').  
+
+**Resultat Esperat**:  
+El nou hotel es crea correctament a la base de dades i l'usuari és redirigit a la pàgina de llista.
+
+---
+
+=== 5. Crear un Nou Hotel amb Dades Invàlides
+Nom de la Prova: test_when_data_is_invalid_should_return_validation_error
+
+Descripció:  
+Comprova que si es proporcionen dades invàlides al crear un hotel, es retornen errors de validació.
+
+.Passos:
+[source,php]
+----
+public function test_when_data_is_invalid_should_return_validation_error(): void
+{
+    Role::firstOrCreate(['name' => 'secretary']);<1>
+    
+    $invalidData = [
+        'name' => '',<2>
+        'address' => '123 Test Street',
+        'city' => 'Test',
+        'country' => 'Test Country',
+        'telephone' => '123456789',
+        'email' => 'invalid-email',<3>
+        'num_rooms' => 10,
+        'num_users' => 5,
+        'num_reserves' => 20,
+    ];
+
+    $response = $this->actingAs($this->admin())->post('/hotels', $invalidData);<4>
+    $response->assertSessionHasErrors(['name', 'email']);<5>
+    $response->assertStatus(302);<6>
+}
+----
+
+<1> Crear el rol 'secretary' si no existeix.  
+<2> Deixar el camp 'name' buit.  
+<3> Utilitzar un email invàlid ('invalid-email').  
+<4> Fer una petició POST a la ruta '/hotels' amb dades invàlides.  
+<5> Comprovar que es generen errors de validació per 'name' i 'email'.  
+<6> Verificar que la resposta té un estat HTTP 302.  
+
+**Resultat Esperat**:  
+Es mostren errors de validació per als camps invàlids.
+
+---
+
+=== 6. Visualitzar un Hotel Específic
+Nom de la Prova: test_when_navigate_to_hotel_show_id_expect_show_hotel_with_given_id
+
+Descripció:  
+Comprova que un administrador pugui visualitzar un hotel específic utilitzant el seu ID.
+
+.Passos:
+[source,php]
+----
+public function test_when_navigate_to_hotel_show_id_expect_show_hotel_with_given_id()
+{
+    $hotel = Hotel::factory()->create();<1>
+    
+    $response = $this->actingAs($this->admin())->get('/hotel/show/' . $hotel->id);<2>
+    $response->assertOk();<3>
+    $response->assertViewIs('hotel.show');<4>
+}
+----
+
+<1> Crear un hotel utilitzant un factory.  
+<2> Fer una petició GET a la ruta '/hotel/show/{id}' amb l'ID de l'hotel.  
+<3> Comprovar que la resposta té un estat HTTP 200.  
+<4> Verificar que la vista retornada és 'hotel.show'.  

@@ -1,0 +1,31 @@
+# Stay In
+
+== Membres del Grup
+- **Alex Villar Gracia**
+- **Juan Francisco Flores Fernandez**
+- **Fernando Viedma Maza**
+
+== Fonts Externes
+A continuació es detallen les fonts externes i eines utilitzades durant el desenvolupament del projecte:
+
+- **GitLab Issues**: https://gitlab.com/fernando-viedma/grup07-hotels/-/boards[Enllaç al tauler de GitLab]
+- **Figma (Disseny de la interfície)**: https://www.figma.com/design/JhINApo51qytiEs5qAAby7/Guia-d'estils-Stay-In?node-id=0-1&t=RnBvDers1EwCHVVA-1[Enllaç a Figma]
+- **Front Office (Client)**: `https://web.stayin7.info`
+- **Back Office (Administració)**: `https://bko.stayin7.info`
+
+== Proves i Desplegament
+Aquesta secció descriu les màquines i dades necessàries per al desplegament del projecte.
+
+=== Màquina de Producció
+- **Nom**: Juan Francisco Flores
+- **Correu electrònic**: flores.fernandez.juan.francisco@alumnat.copernic.cat
+- **Descripció**: Màquina utilitzada per al desplegament en entorn de producció.
+
+=== Màquina de Desenvolupament
+- **Nom**: Alex Villar Gràcia
+- **Correu electrònic**: rvillar@alumnat.copernic.cat
+- **Descripció**: Màquina utilitzada per al desplegament en entorn de desenvolupament.
+
+=== Documentació Addicional
+- **Memòria del projecte**: link:docs/memoria.adoc[Enllaç a la memòria del projecte]
+- **PORFOLI FERNANDO VIEDMA**: https://github.com/fviedma1/portfolio 

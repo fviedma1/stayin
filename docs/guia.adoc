@@ -1,0 +1,72 @@
+== Guia para el grupo ==
+
+Primero de todo habrà que hacer un.
+```bash
+ composer install 
+```
+
+Una vez esto en otro terminal, haremos dos comandos.
+
+
+Esto hacer una migración de la info que tenemos en el migrations
+```bash
+ php artisan migrate 
+```
+
+Este comando te preguntara si quieres crear una base de datos.
+
+Esto hacer un refresh, primero siempre tendremos que hacer el comando de arriba
+```bash
+ php artisan migrate 
+```
+
+
+Esto del DatabaseSeeder
+```bash
+ php artisan db:seed
+```
+
+
+```bash
+docker compose up -d 
+```
+
+Para instalar node y npm en server:
+```bash
+sudo apt install -y nodejs npm   
+```
+
+Para vite:
+```bash
+npm install vite@^6.0.0 
+```
+
+para instalar sass:
+```bash
+npm install -D sass 
+```
+
+
+para compilar sass:
+```bash
+npm run build 
+```
+```bash
+npm run dev 
+``` 
+y se deja en segundo plano
+
+Para liberar espacio en disco:
+```bash 
+sudo composer clear-cache 
+```
+
+
+Para instalar phpstan:
+```bash
+composer require --dev phpstan/phpstan
+```
+Para mirar los errores de php:
+```bash
+vendor/bin/phpstan analyse
+```

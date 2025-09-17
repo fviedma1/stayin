@@ -1,0 +1,146 @@
+# Memòria del Projecte
+Autor: *Stay IN*
+Data: x
+:toc: left
+:sectnums:
+:imagesdir: images
+
+== INTRODUCCIÓ
+
+=== Membres de l’equip de treball
+- **Alex Villar Gracia**
+- **Juan Francisco Flores Fernandez**
+- **Fernando Viedma**
+
+=== Descripció dels membres de l’equip de treball
+L’equip de treball està format per estudiants amb en desenvolupament de software, disseny d’interfícies d’usuari i gestió de projectes. Cada membre aporta els coneixements específics en tecnologies com Vue.js, laravel, bases de dades relacionals i APIs REST, garantint un enfocament multidisciplinari per assolir els objectius del projecte.
+
+=== Objectiu de l’aplicació
+Aquest projecte té com a objectiu el desenvolupament d’un sistema de gestió integral per a una cadena hotelera, dissenyat per optimitzar les operacions internes dels hotels i oferir una experiència fluida als clients que fan reserves en línia. El sistema es divideix en dues aplicacions independents però complementàries, cadascuna amb un enfocament diferent per satisfer les necessitats específiques dels usuaris finals.
+
+=== Públic objectiu (Target)
+El sistema està dirigit a dos grups principals d’usuaris:
+
+1. **Personal dels hotels**: Recepcionistes i administradors que necessiten eines eficients per gestionar reserves, habitacions i operacions diàries.
+2. **Clients finals**: Usuaris que busquen reservar habitacions de manera ràpida i senzilla des de qualsevol dispositiu.
+
+=== Aplicació per al personal (Gestió interna)
+Aquesta aplicació està orientada a la gestió de reserves, clients i habitacions per part del personal dels hotels.
+
+- Funciona com una aplicació que es connecta directament a la base de dades central. Això redueix la complexitat i millora la velocitat en la gestió interna.
+- Inclou funcionalitats com ara la visualització de l’estat de les habitacions, la creació de reserves, l’actualització de check-ins/check-outs i la capacitat de crear hotels i habitacions noves.
+
+=== Aplicació per als clients (Reserves en línia)
+Aquesta aplicació, basada en APIs REST, està pensada per ser utilitzada pels clients finals per reservar habitacions.
+
+- Inclou un cercador global que permet explorar la disponibilitat en tota la cadena i proporciona una experiència personalitzada segons l’hotel seleccionat.
+- La tecnologia basada en APIs REST assegura que el sistema sigui modular i escalable, oferint la possibilitat d’expandir-lo a altres plataformes, com ara aplicacions mòbils.
+
+<<<
+== DISSENY DE BASE DE DADES
+
+En aquesta imatge es pot veure el diagrama de la base de dades de l'aplicació Stay In:
+
+image::diagrama-latest-version.png[Diagrama de la base de dades]
+
+<<<
+== GUIA D'ESTILS i SKETCHING D'INTERFÍCIES 
+
+En el següent enllaç es pot accedir a la guia d'estils i els esbossos de les interfícies de l'aplicació Stay In:
+
+https://www.figma.com/design/JhINApo51qytiEs5qAAby7/Guia-d'estils-Stay-In?node-id=0-1&t=RnBvDers1EwCHVVA-1[Figma] 
+
+== Manual d'Instal·lació de la Plataforma Stay In
+
+Aquest manual estableix els passos necessaris per a la configuració i desplegament de la plataforma Stay In en entorns de desenvolupament i producció. A continuació, es detallen les guies específiques per a cada aspecte de la instal·lació:
+
+=== Guies Relacionades
+Per a una configuració completa, consulta les següents guies:
+
+- link:husky.adoc[Guia d'instal·lació i configuració de Husky]
+- link:aws-guia.adoc[Guia de configuració de AWS]
+- link:guia-servidor.adoc[Guia de configuració del servidor]
+- link:guia-web.adoc[Guia de configuració del servidor web]
+- link:tests.adoc[Guia de tests i verificació]
+
+=== Accés a la Plataforma
+
+Un cop configurat el sistema, pots accedir a la plataforma mitjançant les següents URLs:
+
+- **Front Office (Client)**: `https://web.stayin7.info`
+- **Back Office (Administració)**: `https://bko.stayin7.info`
+
+Assegura't que els dominis estiguin correctament configurats i que els certificats SSL estiguin instal·lats per a una connexió segura.
+
+=== Requisits Previs
+Abans de començar la instal·lació, assegura't de tenir:
+
+1. Accés als servidors de producció o desenvolupament.
+2. Les credencials d'accés a AWS (si s'utilitza).
+3. Els permisos necessaris per a la configuració del servidor i la base de dades.
+4. Una connexió a Internet estable per a la descàrrega de dependències.
+
+=== Passos Generals
+1. Configura el servidor segons la guia de configuració del servidor.
+2. Desplega el codi font de la plataforma.
+3. Configura el servidor web segons la guia de configuració del servidor web.
+4. Executa els tests per verificar que tot funcioni correctament.
+5. Accedeix a la plataforma mitjançant les URLs proporcionades.
+
+<<<
+
+== LÍNIES FUTURES
+
+Aquesta secció descriu les millores i funcionalitats que es podrien implementar en futures iteracions del projecte. Aquestes línies futures estan enfocades a millorar l'experiència d'usuari, l'eficiència del codi i la cobertura de funcionalitats.
+
+=== Millores en el Gestor de Reserves
+- **Vista millorada del gestor**: Redissenyar la interfície del gestor per a una experiència d'usuari més intuïtiva i eficient.
+- **Divisió de cel·les**: Permetre dividir les cel·les del gestor per a visualitzar dues reserves en un mateix dia, millorant la gestió de l'ocupació de les habitacions.
+
+=== Funcionalitats Pendents
+- **RW07: Registre d’usuari**: Implementar un sistema de registre d'usuari per a clients recurrents, amb opcions de personalització i gestió de perfils.
+- **RW08: Historial de reserves per client**: Afegir una funcionalitat que permeti als clients visualitzar el seu historial de reserves i als administradors gestionar-lo.
+- **RW09: Refactorització de RW05 (Resum de la reserva i pagament)**: Millorar el procés de resum de la reserva i pagament per a fer-lo més eficient i fàcil d'utilitzar.
+- **RW10: Metadades i compartició a xarxes socials**: Afegir metadades per a millorar el SEO i permetre als usuaris compartir reserves o ofertes a les xarxes socials.
+- **T08: Seguretat de l’aplicació**: Implementar mesures de seguretat addicionals, com ara autenticació en dos factors i encriptació de dades sensibles.
+- **T09: Cobertura completa de proves de l’API a Postman**: Ampliar la cobertura de les proves de l'API per a assegurar que totes les funcionalitats estan correctament verificades.
+
+Basicament quasi tot el Sprint 2 web.
+
+=== Millores en la Responsivitat i Optimització
+- **Dissenys totalment adaptatius per a mòbils**: Assegurar que l'aplicació estigui completament optimitzada per a dispositius mòbils, amb un enfocament *mobile-first*.
+- **Ús de *lazy loading***: Implementar *lazy loading* per a carregar imatges i contingut de manera dinàmica, millorant el rendiment de l'aplicació.
+- **Imatges adaptatives**: Utilitzar diferents resolucions d'imatges segons la mida de la pantalla per a optimitzar el temps de càrrega i l'ús de dades.
+
+=== Altres Millores
+- **Tests d'integració**: Tot i que tenim alguns tests, sabem que son insuficientes i hauriem d'afegir més tests d'integració per a garantir el correcte funcionament de les diferents parts de l'aplicació.
+
+<<<
+
+== CONCLUSIONS
+=== Valoració Personal (Juan)
+En general, estic satisfet amb el resultat de la pàgina web desenvolupada. Malgrat que hi ha molts aspectes que es podrien millorar (com es pot veure a la secció de *Línies Futures*), hem hagut de prioritzar les tasques degut a limitacions de temps i, en alguns casos, a manca de coneixement específic. Aquests aspectes s'han deixat pendents per a futures iteracions del projecte.
+
+Personalment, he trobat que el projecte s'ha fet una mica llarg. Una de les millors decisions ha estat revisar setmanalment l'evolució dels grups amb els professors, cosa que ha permès una millor organització i coordinació respecte a projectes anteriors.
+
+Pel que fa a les eines utilitzades, totes han estat útils, però **Laravel** ha destacat especialment per la seva flexibilitat i potència en el desenvolupament del backend. Aquesta experiència m'ha permès aprofundir en el seu ús i entendre millor com treballar amb frameworks moderns.
+
+En resum, aquest projecte ha sigut un repte intens que, mica en mica, hem après a superar. Estic satisfet amb el resultat final i, sobretot, amb l'experiència adquirida en el desenvolupament d'una aplicació web completa.
+
+=== Valoració Personal (Fernando)
+En general, estic satisfet amb el resultat del projecte desenvolupat. Tot i que hi ha diversos aspectes que es podrien millorar (com es destaca a la secció de *Línies Futures*), hem hagut de gestionar les prioritats a causa de limitacions de temps i coneixements específics. Aquests aspectes s'han deixat pendents per a futures iteracions del projecte.
+
+Personalment, considero que el projecte ha estat exigent i llarg, però també molt enriquidor. Una de les decisions més encertades ha estat establir reunions periòdiques amb els professors per avaluar el progrés, fet que ha facilitat una millor organització i ha ajudat a resoldre dubtes de manera més eficient.
+
+Pel que fa a les eines utilitzades, totes han tingut la seva utilitat, però **VUE** ha destacat per la seva estructura i funcionalitats en el desenvolupament del Frontend. Aquesta experiència m'ha permès aprofundir en el seu ús i entendre millor el funcionament d'un framework d'aquest estil.
+
+En resum, aquest projecte ha representat un repte considerable, però també una oportunitat d'aprenentatge molt valuosa. Estic satisfet amb el resultat final i, sobretot, amb els coneixements adquirits en el desenvolupament d'una aplicació web completa.
+
+=== Valoració Personal (Alex)
+Aquest projecte ha estat molt útil per a familiaritzar-nos amb Laravel i Vue. Tot i que penso que ha sigut massa llarg i pesat en alguns moments, l'experiència ha estat enriquidora. Treballar amb els meus companys ha estat molt fàcil, ja que compartim una manera similar d'entendre el desenvolupament i hem aconseguit formar un bon equip ràpidament. Crec que la nostra coordinació ha estat clau per tirar endavant les diferents tasques amb èxit.
+
+Gràcies al Juan pel seu lideratge, que ha facilitat l'organització del treball, i al Nando per la seva gran disposició a ajudar en el que fes falta, fet que ha contribuït a agilitzar molts processos. A més, les reunions periòdiques amb els professors han estat essencials per orientar el desenvolupament i garantir que complíem els objectius establerts.
+
+Pel que fa a les eines utilitzades, Laravel ha estat especialment útil per a la gestió del backend, mentre que Vue ha permès crear una interfície d'usuari dinàmica i eficient. Aquesta combinació m'ha permès entendre millor com treballar amb tecnologies modernes en un projecte real i adquirir més experiència en el desenvolupament web.
+
+Finalment, encara que no hem pogut implementar totes les funcionalitats previstes, considero que hem aconseguit un projecte sòlid i presentable. L'experiència adquirida ha estat molt valuosa, i em sento satisfet amb el resultat final i amb la feina feta pel nostre equip.

@@ -1,0 +1,77 @@
+= Instal·lació de Husky
+
+Per començar, instal·la Husky com a dependència de desenvolupament:
+
+[source,bash]
+----
+npm install husky --save-dev
+----
+
+A continuació, configura Husky:
+
+[source,bash]
+----
+npx husky init
+----
+
+Ara afegirem dins del `package.json` el següent:
+
+[source,json]
+----
+"prepare": "cd .. && husky src/.husky",
+----
+
+Seguidament, farem la següent comanda, per que s'executi el prepare:
+
+[source,bash]
+----
+npm install
+----
+
+Dins de `src` se'ns generarà una nova carpeta anomenada `.husky/_`, on hi haurà fitxers com `pre-commit`, `commit-msg`, etc.
+
+Nosaltres només farem servir el `pre-commit` i el `commit-msg`. Per tant, eliminarem la resta de fitxers.
+
+A dins del fitxer `pre-commit`, hi posarem el següent:
+
+[source,bash]
+----
+#!/usr/bin/env sh
+
+# Agrega aquí las acciones que quieras ejecutar antes del commit
+echo "Archivos que se van a subir:"
+git diff --cached --name-only
+----
+
+I a dins del fitxer `commit-msg`, hi posarem el següent:
+
+[source,bash]
+----
+#!/usr/bin/env sh
+
+# Invoca el script que valida el mensaje del commit
+src/.husky/_/commit-msg.sh "$@"
+----
+
+I un cop fet això, crearem el següent arxiu dins de `src/.husky/_` anomenat `commit-msg.sh`, i hi posarem el següent:
+
+[source,bash]
+----
+#!/bin/sh
+
+# Obtén el mensaje del commit desde el archivo que se pasa como argumento
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+# Verifica si el mensaje tiene menos de 10 caracteres
+if [ ${#commit_msg} -lt 10 ]; then
+  echo "❌ El mensaje del commit debe tener al menos 10 caracteres."
+  exit 1
+fi
+
+echo "✅ El mensaje del commit es válido."
+----
+
+El que fa aquest script és comprovar si el missatge del commit té almenys 10 caràcters. Si no en té, el commit no es realitzarà. Per així evitarem commits amb missatges buits.
+
+-link:memoria.adoc[Torna a la Memòria]
