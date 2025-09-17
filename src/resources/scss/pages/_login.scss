@@ -1,0 +1,100 @@
+/* Contenidor principal del login */
+.login__container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* Secció esquerra i dreta */
+.login__section--left,
+.login__section--right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Imatge a la secció esquerra */
+.login__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Secció dreta del login */
+.login__section--right {
+    background-color: var(--background-light);
+    color: var(--text-primary);
+}
+
+/* Formulari del login */
+.login__form {
+    width: 80%;
+    max-width: 400px;
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Títol del formulari */
+.login__form-title {
+    color: var(--primary-color);
+}
+
+/* Contenidor del formulari */
+.login__form-fields {
+    display: grid;
+    gap: 20px;
+}
+
+/* Etiquetes del formulari */
+.login__label {
+    color: var(--text-primary);
+}
+
+/* Camps d'entrada */
+.login__input {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid var(--text-primary);
+    background-color: var(--background-light);
+    color: var(--text-primary);
+    border-radius: 4px;
+}
+
+/* Focus als camps d'entrada */
+.login__input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Botó de submit */
+.login__button {
+    padding: 10px;
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Hover sobre el botó */
+.login__button:hover {
+    background-color: var(--secundary-color);
+}
+
+/* Contenidor de missatges d'error */
+.login__error-messages {
+    color: var(--status-error);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Missatge d'error individual */
+.login__error-message {
+    color: var(--status-error);
+    margin-top: 5px;
+    text-decoration: dashed;
+}

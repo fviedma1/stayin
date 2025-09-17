@@ -1,0 +1,39 @@
+/* Bloque: search-bar */
+.container-card__search-bar {
+    display: flex;
+    justify-content: center; /* Centrar la barra de búsqueda */
+    margin: 1.5rem 0; /* Espacio vertical superior e inferior */
+    width: 100%; /* Ocupar todo el ancho del contenedor */
+}
+
+/* Elemento: input dentro del bloque search-bar */
+.container-card__search-input {
+    width: 60%; /* Ancho del 60% del contenedor */
+    max-width: 700px; /* Máximo ancho */
+    padding: 1rem; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de la fuente */
+    color: var(--text-primary); /* Color del texto */
+    background-color: var(--background-dark); /* Fondo del input */
+    border: 2px solid var(--border-color); /* Borde más grueso */
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    transition: all 0.3s ease; /* Transición suave en focus */
+}
+
+/* Estilos en focus para el input de búsqueda */
+.container-card__search-input:focus {
+    outline: none;
+    border-color: var(--primary-color); /* Cambio de color del borde */
+    box-shadow: 0 0 10px var(--primary-color); /* Sombra de focus más intensa */
+}
+
+/* Placeholder del input */
+.container-card__search-input::placeholder {
+    color: var(--text-secondary); /* Color del placeholder */
+    opacity: 0.8; /* Opacidad reducida */
+}
+
+/* Efecto hover para el input */
+.container-card__search-input:hover {
+    border-color: var(--primary-color); /* Cambio de color del borde al pasar el ratón */
+}

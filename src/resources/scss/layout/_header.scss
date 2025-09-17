@@ -1,0 +1,48 @@
+header {
+    position: fixed;
+    width: 15vw; /* Ancho relativo al ancho de la ventana */
+    background-color: var(--background-light); /* Fondo con variable */
+    color: var(--text-primary); /* Color de texto con variable */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 100;
+}
+
+header .logo {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+header .logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Media queries para ajustar el diseño en diferentes tamaños de pantalla */
+@media (max-width: 1200px) {
+    header {
+        width: 20vw;
+    }
+}
+
+@media (max-width: 992px) {
+    header {
+        width: 25vw;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        width: 30vw;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        width: 40vw;
+    }
+}

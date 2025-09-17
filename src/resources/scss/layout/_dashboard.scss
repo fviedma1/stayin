@@ -1,0 +1,14 @@
+.dashboard {
+    background-color: var(--background-light);
+    color: var(--text-primary); /* Usar la variable para el texto */
+    width: 100%; /* Ajustar el ancho para ocupar el 100% del contenedor principal */
+    margin: 10px 10px;
+    height: 90%;
+    min-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;   
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}

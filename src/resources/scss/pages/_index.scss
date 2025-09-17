@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-main);
+    color: var(--text-primary);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+main {
+    padding: 0 10px;
+    margin-left: 15vw;
+    /* Deixar espai per al header */
+    width: 82vw;
+    /* Amplada relativa a l'amplada de la finestra */
+}
+
+.dashboard__container {
+    padding: 2rem;
+}
+
+.dashboard__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.dashboard__header__h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+/* Contingut de la secció inferior */
+.content__below {
+    padding: 2rem;
+    text-align: center;
+}
+
+.content__below h2 {
+    margin: 2rem;
+    font-size: 2rem;
+    color: #f4f4f4;
+}
+
+
+/* Responsivitat per a pantalles més petites */
+@media (max-width: 1200px) {
+    main {
+        margin-left: 20vw;
+        /* Ajustar el marge per a pantalles més petites */
+        width: 80vw;
+        /* Ajustar l'amplada per a pantalles més petites */
+    }
+}
+
+@media (max-width: 992px) {
+    main {
+        margin-left: 25vw;
+        /* Ajustar el marge per a pantalles més petites */
+        width: 75vw;
+        /* Ajustar l'amplada per a pantalles més petites */
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-left: 30vw;
+        /* Ajustar el marge per a pantalles més petites */
+        width: 70vw;
+        /* Ajustar l'amplada per a pantalles més petites */
+    }
+}
+
+@media (max-width: 576px) {
+    main {
+        margin-left: 40vw;
+        /* Ajustar el marge per a pantalles més petites */
+        width: 60vw;
+        /* Ajustar l'amplada per a pantalles més petites */
+    }
+}
+
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        /* Canviar a 2 columnes en pantalles mitjanes */
+    }
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+        /* Canviar a 1 columna en pantalles petites */
+    }
+}

@@ -1,0 +1,115 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajustar automáticamente */
+    gap: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.card {
+    background-color: var(--border-color);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 400px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card--no-image .card__content {
+    height: 100%;
+}
+
+.card__image {
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+}
+
+.card__content {
+    padding: 1rem;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card__title {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin: 0 0 1rem;
+    font-weight: 700;
+    padding: 0 1rem;
+}
+
+.card__country {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+}
+
+.card__description {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    padding: 0 1rem;
+}
+
+.card__type {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin: 0 0 1rem;
+    padding: 0 1rem;
+}
+
+.card__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 1rem;
+    padding: 0 1rem;
+}
+
+.card__capacity {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.card__price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.card__link {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Hereda el color del texto */
+    display: block;
+}
+
+.card__link:hover {
+    text-decoration: none; /* Mantiene el enlace sin estilo visual al pasar el cursor */
+}
+
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr); /* Ajustar a 2 columnas */
+    }
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr; /* Cambiar a 1 columna */
+    }
+}

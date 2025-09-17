@@ -1,0 +1,72 @@
+.btn {
+    &--submit,
+    &--cancel {
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        border-radius: 8px;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    &--submit {
+        background-color: var(--status-success);
+        &:hover {
+            background-color: var(--status-success-hover);
+        }
+    }
+
+    &--cancel {
+        background-color: var(--status-error);
+        &:hover {
+            background-color: var(--status-error-hover);
+        }
+    }
+
+    &--checkin {
+        background-color: var(--status-success);
+        border: none;
+        color: #ffffff;
+        padding: 1rem 2rem;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    &--checkout {
+        background-color: var(--status-error-hover);
+        border: none;
+        color: #ffffff;
+        padding: 1rem 2rem;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    &--orange {
+        background-color: var(--primary-color);
+        border: none;
+        color: var(--text-primary);
+        padding: 1rem 2rem;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    &--orange:hover {
+        background-color: var(--secundary-color);
+    }
+}

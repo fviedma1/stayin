@@ -1,0 +1,116 @@
+/* Bloque principal */
+.container-card {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Elementos del bloque container-card */
+.container-card__title {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700; /* Poppins Bold */
+}
+
+.container-card__main-title {
+    color: var(--text-primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 700; /* Poppins Bold */
+}
+
+.container-card__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+.container-card__room-list {
+    margin-top: 2rem;
+}
+
+/* Bloque filter-form */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 2rem;
+}
+
+/* Elementos del bloque filter-form */
+.filter-form__group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 250px;
+}
+
+.filter-form__label {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.filter-form__input,
+.filter-form__select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #343a40;
+    border-radius: 8px;
+    background-color: #343a40;
+    color: #f4f4f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.filter-form__input:focus,
+.filter-form__select:focus {
+    outline: none;
+    border-color: #cc7a39;
+    box-shadow: 0 4px 8px rgba(204, 122, 57, 0.25);
+}
+
+.filter-form__btn {
+    padding: 0.6rem 1.2rem;
+    background-color: #cc7a39;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: flex-end; /* Alinear el botón a la derecha */
+}
+
+.filter-form__btn:hover {
+    background-color: var(--secundary-color);
+}
+
+/* Modificador para el botón de filtro */
+.filter-form__button--filter {
+    align-self: flex-end; /* Alinear el botón a la derecha */
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .container-card__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-form__group {
+        width: 100%;
+    }
+
+    .filter-form__button {
+        width: 100%;
+    }
+}

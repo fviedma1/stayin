@@ -1,0 +1,228 @@
+/* Organización del formulario con Grid */
+.form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: flex-start;
+}
+
+/* Columnas del formulario */
+.form__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Dos columnas de igual tamaño */
+    gap: 1.5rem;
+    /* Espacio entre columnas */
+    margin-bottom: 1.5rem;
+    /* Espacio debajo de las columnas */
+}
+
+/* Estilos para cada columna */
+.form__grid-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    /* Espacio entre los campos */
+}
+
+/* Encabezados dentro del formulario */
+.form__heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--secundary-color);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Etiquetas de formulario */
+.form__label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Estilos para los inputs */
+.form__input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--text-primary);
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form__input:focus {
+    border-color: var(--status-info);
+    outline: none;
+}
+
+/* Lista de servicios disponibles */
+.form__services-list {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+/* Elemento de la lista de servicios */
+.form__service-item {
+    font-size: 1rem;
+    color: var(--background-main);
+    background-color: var(--text-primary);
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Errores en el formulario */
+.form__error {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-top: 5px;
+}
+
+/* Botones dentro del formulario */
+.form__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+
+.btn--submit {
+    background-color: var(--status-success);
+    color: var(--text-primary);
+}
+
+.btn--submit:hover {
+    background-color: var(--status-success-hover);
+
+}
+
+.btn--cancel {
+    background-color: var(--status-error);
+    color: var(--text-primary);
+}
+
+.btn--cancel:hover {
+    background-color: var(--status-error-hover);
+
+}
+
+/* Estilos para el Wizard */
+.wizard__progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+
+.wizard__progress-step {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    border-bottom: 3px solid var(--text-primary);
+    color: #666;
+}
+
+.wizard__progress-step--active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.wizard__form-step {
+    display: none;
+}
+
+.wizard__form-step--active {
+    display: block;
+    animation: wizard__fadeIn 0.3s;
+}
+
+@keyframes wizard__fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.wizard__form-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.wizard__btn {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.wizard__btn--prev {
+    background-color: #6c757d;
+    color: var(--text-primary);
+}
+
+.wizard__btn--next,
+.wizard__btn--submit {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+.wizard__btn--submit {
+    background-color: var(--status-success);
+}
+
+.wizard__country-flag {
+    width: 20px;
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Estilos responsive */
+@media (max-width: 1024px) {
+    .form {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .form {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .form__actions {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+    }
+}

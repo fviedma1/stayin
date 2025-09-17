@@ -1,0 +1,26 @@
+// Import de los estilos de la aplicación
+
+@use 'base/typography';
+@use 'base/colors';
+
+@use 'layout/navigation';
+@use 'layout/header';
+@use 'layout/cards';
+@use 'layout/dashboard';
+@use 'layout/message';
+@use 'layout/buttons';
+@use 'layout/search';
+@use 'layout/table';
+
+@use 'pages/index';
+@use 'pages/create';
+@use 'pages/show';
+@use 'pages/showOne';
+@use 'pages/login';
+@use 'pages/gestio';
+@use 'pages/room';
+@use 'pages/reserves';
+@use 'pages/news';
+@use 'pages/pagination';
+@use 'pages/news-form.scss';
+@use 'pages/section.scss';

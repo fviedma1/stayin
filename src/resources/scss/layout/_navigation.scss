@@ -1,0 +1,76 @@
+/* Bloque: logo */
+.logo {
+    text-align: center; /* Centrar el logo si es necesario */
+}
+
+/* Elemento: imagen dentro del bloque logo */
+.logo__image {
+    max-width: 100%; /* Asegurar que la imagen no se desborde */
+    height: auto; /* Mantener la proporción de la imagen */
+}
+
+/* Bloque: nav */
+.nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Elemento: item dentro del bloque nav */
+.nav__item {
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    transition: background-color 0.3s;
+    padding-left: 20px;
+}
+
+/* Elemento: enlace dentro de nav__item */
+.nav__link {
+    color: var(--text-primary); /* Uso de variable para el texto */
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Modificador: hover para nav__item */
+.nav__item:hover {
+    background-color: var(--primary-color); /* Fondo al hacer hover */
+}
+
+/* Elemento: icono dentro de nav__item */
+.nav__icon {
+    font-size: 1.25rem;
+}
+
+/* Modificador: estado activo para nav__item */
+.nav__item--active {
+    background-color: var(--primary-color); /* Fondo para el elemento activo */
+    color: var(--text-primary); /* Color del texto activo */
+}
+
+.nav__item--active .nav__link {
+    color: var(--text-primary); /* Uso de la variable para texto */
+}
+
+.nav__item--active .nav__icon {
+    color: var(--text-primary); /* Icono con la misma variable */
+}
+
+/* Bloque: copyright */
+.copyright {
+    background-color: var(--background-main); /* Fondo con variable */
+    color: var(--text-primary); /* Texto con variable */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Elemento: texto dentro del bloque copyright */
+.copyright__text {
+    margin: 0; /* Eliminar margen por defecto del párrafo */
+}
